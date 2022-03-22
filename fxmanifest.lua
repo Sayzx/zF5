@@ -3,8 +3,8 @@ game 'gta5'
 
 name "zF5"
 description "F5"
-author "Say&L4"
-version "1.0"
+author "SayzXzDéveloppement"
+version "1.5"
 
 shared_scripts {
 	'shared/*.lua'
