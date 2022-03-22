@@ -31,9 +31,6 @@
 - [esx_datastore](https://github.com/ESX-Org/esx_datastore)
 - [esx_billing](https://github.com/ESX-Org/esx_billing)
 - [esx_society](https://github.com/ESX-Org/esx_society)
-- [skinchanger](https://github.com/ESX-Org/skinchanger)
-- [esx_skin](https://github.com/ESX-Org/esx_skin)
-- [esx_accessories](https://github.com/ESX-Org/esx_accessories)
 - Optional: [jsfour-idcard](https://github.com/jonassvensson4/jsfour-idcard)
 
 ### Download & Installation
