@@ -9,19 +9,20 @@ ESX.RegisterServerCallback('zF5:server:getGroup', function(source, cb)
 end)
 
 
-ESX.RegisterServerCallback('KorioZ-PersonalMenu:Bill_getBills', function(source, cb)
+ESX.RegisterServerCallback('zF5:Bill_getBills', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local bills = {}
 
 	MySQL.Async.fetchAll('SELECT * FROM billing WHERE identifier = @identifier', {
 		['@identifier'] = xPlayer.identifier
 	}, function(result)
-		for i = 1, #result, 1 do
-			table.insert(bills, {
+		local bills = {}
+
+		for i = 1, #result do
+			bills[#bills + 1] = {
 				id = result[i].id,
 				label = result[i].label,
 				amount = result[i].amount
-			})
+			}
 		end
 
 		cb(bills)

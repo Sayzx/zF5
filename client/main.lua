@@ -100,8 +100,9 @@ function OpenNewsF5Menu()
         RageUI.Visible(F5MainMenu, true)
         CreateThread(function()
 
-            ESX.TriggerServerCallback('KorioZ-PersonalMenu:Bill_getBills', function(bills)
+            ESX.TriggerServerCallback('krz_personalmenu:Bill_getBills', function(bills)
                 billing = bills
+                ESX.PlayerData = ESX.GetPlayerData()
             end)
 
             invItem = {}
@@ -123,7 +124,10 @@ function OpenNewsF5Menu()
             while isMenuOpen do
                 Wait(interval)
 
-                ESX.PlayerData = ESX.GetPlayerData()
+                ESX.TriggerServerCallback('krz_personalmenu:Bill_getBills', function(bills)
+                    billing = bills
+                    ESX.PlayerData = ESX.GetPlayerData()
+                end)
 
                 RageUI.IsVisible(F5MainMenu, function()
                     RageUI.Separator("~r~↓ ~b~zDev - F5  ~r~↓")
@@ -395,10 +399,8 @@ function OpenNewsF5Menu()
                         RageUI.Button(billing[i].label, nil, {RightLabel = '[~b~$' .. ESX.Math.GroupDigits(billing[i].amount.."~s~] →")}, true, {
                             onSelected = function()
                                 ESX.TriggerServerCallback('esx_billing:payBill', function()
-                                    ESX.TriggerServerCallback('KorioZ-PersonalMenu:Bill_getBills', function(bills)
-                                        billing = bills
-                                    end)
-                                end)
+                                    ESX.TriggerServerCallback('zF5:Bill_getBills', function(bills) billing = bills end)
+                                end, billing[i].id)
                             end
                         })
                     end
