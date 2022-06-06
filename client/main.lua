@@ -100,7 +100,7 @@ function OpenNewsF5Menu()
         RageUI.Visible(F5MainMenu, true)
         CreateThread(function()
 
-            ESX.TriggerServerCallback('krz_personalmenu:Bill_getBills', function(bills)
+            ESX.TriggerServerCallback('zF5:Bill_getBills', function(bills)
                 billing = bills
                 ESX.PlayerData = ESX.GetPlayerData()
             end)
@@ -121,13 +121,11 @@ function OpenNewsF5Menu()
                 end
             end)
 
+
             while isMenuOpen do
                 Wait(interval)
 
-                ESX.TriggerServerCallback('krz_personalmenu:Bill_getBills', function(bills)
-                    billing = bills
-                    ESX.PlayerData = ESX.GetPlayerData()
-                end)
+
 
                 RageUI.IsVisible(F5MainMenu, function()
                     RageUI.Separator("~r~↓ ~b~zDev - F5  ~r~↓")

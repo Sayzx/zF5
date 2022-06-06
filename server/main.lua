@@ -92,7 +92,7 @@ AddEventHandler("twt:send",function(TweetText, SenderTweet)
 end)
 
 
-ESX.RegisterServerCallback('krz_personalmenu:Bill_getBills', function(source, cb)
+ESX.RegisterServerCallback('zF5:Bill_getBills', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	MySQL.Async.fetchAll('SELECT * FROM billing WHERE identifier = @identifier', {
