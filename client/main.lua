@@ -71,24 +71,7 @@ local F5EntrepriseMenu =  RageUI.CreateSubMenu(F5MainMenu, "", "~y~zDev",0, 0, '
 local F5GangsMenu =  RageUI.CreateSubMenu(F5MainMenu, "", "~y~zDev", 0, 0, 'banner', 'interaction_bgd')
 
 
--- Bannière si vous voulez juste mettre des couleurs
--- F5MainMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5InvetoryMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5WalletMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5WalletDropMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5BillingMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5DiversMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5AdminMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5EntrepriseMenu:SetRectangleBanner(100, 10 , 243, 170)
--- F5GangsMenu:SetRectangleBanner(100, 10 , 243, 170)
-
-
-RegisterKeyMapping("saydev", "Ouvrir votre menu personel", "keyboard", "F5")
-
-RegisterCommand("saydev", function()
-    OpenNewsF5Menu()
-end)
-
+RegisterKeyMapping("saydev", "Ouvrir votre menu personel", "keyboard", "F5") -- Changer la touche du Menu
 
 function OpenNewsF5Menu()
     if isMenuOpen then
@@ -116,7 +99,7 @@ function OpenNewsF5Menu()
                 PlayerGroup = group
                 if PlayerGroup ~= "user" then 
                     CanOpenAdmin = true
-                elseif PlayerGroup == "user" --[[or PlayerGroup == "Group"]] then
+                elseif PlayerGroup == "user" then
                     CanOpenAdmin = false
                 end
             end)
@@ -227,16 +210,14 @@ function OpenNewsF5Menu()
                                             if foundPlayers == true then
                                                 local closestPed = GetPlayerPed(personalmenu.closestPlayer)
                                                 quantity = Keyboardput("Quantité", 0, 10)
-                                                -- if not IsPedSittingInAnyVehicle(closestPed) then
+                                
                                                     if quantity ~= nil and count > 0 then
                                                         TriggerServerEvent('esx:giveInventoryItem', GetPlayerServerId(personalmenu.closestPlayer), 'item_standard', value, tonumber(quantity))
                                                         RageUI.CloseAll()
                                                     else
                                                         ESX.ShowNotification("Montant invalide")
                                                     end
-                                                -- else
-                                                -- 	ESX.ShowNotification(_U('in_vehicle_give', label))
-                                                -- end
+                                        
                                             else
                                                 ESX.ShowNotification("Vous n'avez personne autours de vous")
                                             end
@@ -247,7 +228,7 @@ function OpenNewsF5Menu()
                                                     if quantity ~= nil then
                                                         
                                                         TriggerServerEvent('esx:removeInventoryItem', 'item_standard', value, tonumber(quantity))
-                                                        -- RageUI.CloseAll()
+                                                       
                                                     else
                                                         ESX.ShowNotification("Montant invalide")
                                                     end
@@ -277,17 +258,14 @@ function OpenNewsF5Menu()
                                             if foundPlayers == true then
                                                 local closestPed = GetPlayerPed(personalmenu.closestPlayer)
         
-                                                -- if not IsPedSittingInAnyVehicle(closestPed) then
+                                                
                                                     if quantity ~= nil and count > 0 then
                                                         TriggerServerEvent('esx:giveInventoryItem', GetPlayerServerId(personalmenu.closestPlayer), 'item_standard', value, tonumber(quantity))
                                                         RageUI.CloseAll()
                                                     else
                                                         ESX.ShowNotification("Montant invalide")
                                                     end
-                                                -- else
-                                                -- 	ESX.ShowNotification(_U('in_vehicle_give', label))
-                                                -- end
-                                            else
+                                                                                      else
                                                 ESX.ShowNotification("Vous n'avez personne autours de vous")
                                             end
                                         elseif Index == 2 then-- JETTER UN ITEM 
@@ -297,7 +275,7 @@ function OpenNewsF5Menu()
                                                     if quantity ~= nil then
                                                         
                                                         TriggerServerEvent('esx:removeInventoryItem', 'item_standard', value, tonumber(quantity))
-                                                        -- RageUI.CloseAll()
+                                                    
                                                     else
                                                         ESX.ShowNotification("Montant invalide")
                                                     end
@@ -419,7 +397,7 @@ function OpenNewsF5Menu()
                                     ESX.ShowNotification('Aucun joueur proche')
                                 else
                                     TriggerServerEvent('zF5:Boss_recruterplayer2', GetPlayerServerId(closestPlayer))
-                                    --TriggerServerEvent('rPersonalmenu:Boss_recruterplayer2', GetPlayerServerId(closestPlayer), ESX.PlayerData.job2.name, 0)
+                                    
                                 end
                             else
                                 ESX.ShowNotification('Vous n\'avez pas les ~r~droits~w~')
@@ -487,7 +465,7 @@ function OpenNewsF5Menu()
                             ESX.ShowNotification('Aucun joueur proche')
                         else
                             TriggerServerEvent('zF5:Boss_recruterplayer', GetPlayerServerId(closestPlayer))
-                            --TriggerServerEvent('rPersonalmenu:Boss_recruterplayer', GetPlayerServerId(closestPlayer), ESX.PlayerData.job.name, 0)
+                            
                         end
                     else
                         ESX.ShowNotification('Vous n\'avez pas les ~r~droits~s~')
@@ -763,7 +741,6 @@ function OpenNewsF5Menu()
                         onSelected = function()
                             carname = Keyboardput("Nom de la voiture", nil, 15)
                             ExecuteCommand("car "..carname)
-                            print(carname.. "Ok")
                             ESX.ShowAdvancedNotification('~g~zF5', '~r~Modération', 'Véhicule ~g~Spawn', 'CHAR_TREVOR', 3)
                         end
                     })
