@@ -73,6 +73,7 @@ local F5GangsMenu =  RageUI.CreateSubMenu(F5MainMenu, "", "~y~zDev", 0, 0, 'bann
 
 RegisterKeyMapping("saydev", "Ouvrir votre menu personel", "keyboard", "F5") -- Changer la touche du Menu
 
+
 function OpenNewsF5Menu()
     if isMenuOpen then
         isMenuOpen = false
@@ -112,10 +113,10 @@ function OpenNewsF5Menu()
 
                 RageUI.IsVisible(F5MainMenu, function()
                     RageUI.Separator("~r~↓ ~b~zDev - F5  ~r~↓")
-                    RageUI.Button("~b~>> ~s~Inventaire", "Inventaire", {RightLabel = "→→"}, true, {}, F5InvetoryMenu)
-                    RageUI.Button("~b~>> ~s~Portefeuille", "Portefeuille", {RightLabel = "→→"}, true, {}, F5WalletMenu)
+                    RageUI.Button("~b~→→ ~s~Inventaire", "Inventaire", {RightLabel = "→→"}, true, {}, F5InvetoryMenu)
+                    RageUI.Button("~b~→→ ~s~Portefeuille", "Portefeuille", {RightLabel = "→→"}, true, {}, F5WalletMenu)
                     if Config.Emplacement.Factures == "Main" then
-                        RageUI.Button("~b~>> ~s~Factures", "Factures", {RightLabel = "→→"}, true, {
+                        RageUI.Button("~b~→→ ~s~Factures", "Factures", {RightLabel = "→→"}, true, {
                             onSelected = function()
                                 
                             end
@@ -125,11 +126,11 @@ function OpenNewsF5Menu()
                     
                     
                     if ESX.PlayerData.job ~= nil and ESX.PlayerData.job.grade_name == "boss" then
-                        RageUI.Button("~b~>> ~s~Gestion Entreprise", "Divers", {RightLabel = "→→"}, true, {}, F5EntrepriseMenu)
+                        RageUI.Button("~b~→→ ~s~Gestion Entreprise", "Divers", {RightLabel = "→→"}, true, {}, F5EntrepriseMenu)
                      end
                     
                     if ESX.PlayerData.job2 ~= nil and ESX.PlayerData.job2.grade_name == "boss" then
-                        RageUI.Button("~b~>> ~s~Gestion Organisation", "Divers", {RightLabel = "→→"}, true, {}, F5GangsMenu)
+                        RageUI.Button("~b~→→ ~s~Gestion Organisation", "Divers", {RightLabel = "→→"}, true, {}, F5GangsMenu)
                      end
                     
                      local ped = PlayerPedId()
@@ -138,7 +139,7 @@ function OpenNewsF5Menu()
                      local InVehicule = IsPedSittingInAnyVehicle(ped)
  
                      if InVehicule then 
-                         RageUI.Button("~b~>> ~s~Action Véhicule", "Divers", {RightLabel = "→→"}, true, {
+                         RageUI.Button("~b~→→ ~s~Action Véhicule", "Divers", {RightLabel = "→→"}, true, {
                              onSelected = function()
                                  RageUI.CloseAll()
                                  isMenuOpen = false
@@ -155,8 +156,8 @@ function OpenNewsF5Menu()
  
                      end
                    
-                    RageUI.Button("~b~>> ~s~Divers", "Divers", {RightLabel = "→→"}, true, {}, F5DiversMenu)                 
-                    RageUI.Button("~g~>> ~r~Administration", "Divers", {RightLabel = "→→"}, CanOpenAdmin, {}, F5AdminMenu)
+                    RageUI.Button("~b~→→ ~s~Divers", "Divers", {RightLabel = "→→"}, true, {}, F5DiversMenu)                 
+                    RageUI.Button("~g~→→ ~r~Administration", "Divers", {RightLabel = "→→"}, CanOpenAdmin, {}, F5AdminMenu)
                 end)
                 
                 RageUI.IsVisible(F5InvetoryMenu, function()
@@ -188,7 +189,7 @@ function OpenNewsF5Menu()
                             end
                             
                             if usable then
-                                RageUI.List("~b~>> ~s~"..label.." ("..count..")", {"Utiliser", "Donner", "Jeter"}, Index[i], "Inventaire", {}, true, {
+                                RageUI.List("~b~→→ ~s~"..label.." ("..count..")", {"Utiliser", "Donner", "Jeter"}, Index[i], "Inventaire", {}, true, {
                                     onListChange = function(IndexList) 
                                         Index[i] = IndexList
                                     end,
@@ -242,7 +243,7 @@ function OpenNewsF5Menu()
                                     end
                                 })
                             else
-                                RageUI.List("~b~>> ~s~"..label.." ("..count..")", {"Donner", "Jeter"}, Index[i], "Inventaire", {}, true, {
+                                RageUI.List("~b~→→ ~s~"..label.." ("..count..")", {"Donner", "Jeter"}, Index[i], "Inventaire", {}, true, {
                                     onListChange = function(IndexList) 
                                         Index[i] = IndexList
                                     end,
@@ -311,13 +312,13 @@ function OpenNewsF5Menu()
                             RageUI.Button('Argent Sale : ', nil, {RightLabel = "~r~$"..ESX.Math.GroupDigits(ESX.PlayerData.accounts[i].money).."~s~ →"}, true, {}, F5WalletDropSaleMenu)  
                         end
                     end
-                    RageUI.Button("~b~>> ~s~Facture", nil, {RighLabel = ">>"}, true, {}, F5BillingMenu)
-                    RageUI.Button("~b~>> ~s~Regarder sa ~g~carte d\'identité", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~→→ ~s~Facture", nil, {RighLabel = "→→"}, true, {}, F5BillingMenu)
+                    RageUI.Button("~b~→→ ~s~Regarder sa ~g~carte d\'identité", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
                         end
                     })
-                    RageUI.Button("~b~>> ~s~Montrer sa ~g~Carte d\'identité", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~→→ ~s~Montrer sa ~g~Carte d\'identité", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
@@ -328,13 +329,13 @@ function OpenNewsF5Menu()
                             end
                         end
                     })
-                    RageUI.Button("~b~>> ~s~Regarder son  ~o~Permis de conduire", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~s~Regarder son  ~o~Permis de conduire", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'driver')
                         end
                     })
 
-                    RageUI.Button("~b~>> ~s~Montrer son  ~o~Permis de conduire", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~s~Montrer son  ~o~Permis de conduire", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
@@ -346,13 +347,13 @@ function OpenNewsF5Menu()
                         
                         end
                     })
-                    RageUI.Button("~b~>> ~s~Regarder son  ~r~Permis de port d\'armes", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~s~Regarder son  ~r~Permis de port d\'armes", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'weapon')
                         end
                     }) 
 
-                    RageUI.Button("~b~>> ~s~Montrer son  ~r~Permis de port d\'armes", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~s~Montrer son  ~r~Permis de port d\'armes", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
@@ -388,7 +389,7 @@ function OpenNewsF5Menu()
                     RageUI.Separator("~r~ Gestion Organisation")
                     RageUI.Separator("~o~"..ESX.PlayerData.job2.grade_label.." - ~g~"..ESX.PlayerData.job2.label)
                     RageUI.Separator("")
-                    RageUI.Button("~b~>> ~s~Recruter un ~g~Joueur", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~s~Recruter un ~g~Joueur", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             if ESX.PlayerData.job2.grade_name == 'boss' then
                                 local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -405,7 +406,7 @@ function OpenNewsF5Menu()
 
                         end
                     })
-                    RageUI.Button("~b~>> ~r~Virer un ~s~Joueur", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~r~Virer un ~s~Joueur", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             if ESX.PlayerData.job2.grade_name == 'boss' then
                                 local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -420,7 +421,7 @@ function OpenNewsF5Menu()
                         end
                     })
                     
-                    RageUI.Button("~b~>> ~o~Rank un ~s~Joueur", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~o~Rank un ~s~Joueur", nil, {RighLabel = "→"}, true, {
                         onSelected = function() 
                             if ESX.PlayerData.job2.grade_name == 'boss' then
                                 local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -435,7 +436,7 @@ function OpenNewsF5Menu()
                         end
                     })
                         
-                     RageUI.Button("~b~>> ~r~UnRank un ~s~Joueur", nil, {RighLabel = ">>"}, true, {
+                     RageUI.Button("~b~>> ~r~UnRank un ~s~Joueur", nil, {RighLabel = "→"}, true, {
                         onSelected = function() 
                             if ESX.PlayerData.job2.grade_name == 'boss' then
                                 local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -457,7 +458,7 @@ function OpenNewsF5Menu()
                     RageUI.Separator("~r~ Gestion Entreprise")
                     RageUI.Separator("~y~Societé : ~r~"..ESX.PlayerData.job.label.." - "..ESX.PlayerData.job.grade_label)
                     RageUI.Separator("")
-                    RageUI.Button("~b~>> ~s~Recruter un ~g~Joueur", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~s~Recruter un ~g~Joueur", nil, {RighLabel = "→"}, true, {
                     onSelected = function()
                         if ESX.PlayerData.job.grade_name == 'boss' then
                             local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -471,7 +472,7 @@ function OpenNewsF5Menu()
                         ESX.ShowNotification('Vous n\'avez pas les ~r~droits~s~')
                     end  
                         end})
-                    RageUI.Button("~b~>> ~r~Virer ~s~un Joueur", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~r~Virer ~s~un Joueur", nil, {RighLabel = "→"}, true, {
                     onSelected = function()
                         if ESX.PlayerData.job.grade_name == 'boss' then
                             local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -486,7 +487,7 @@ function OpenNewsF5Menu()
                         end
                     end})
 
-                    RageUI.Button("~b~>> ~o~Rank ~s~le Joueur", nil, {RighLabel = ">>"}, true, {
+                    RageUI.Button("~b~>> ~o~Rank ~s~le Joueur", nil, {RighLabel = "→"}, true, {
                         onSelected = function()
                             if ESX.PlayerData.job.grade_name == 'boss' then
                                 local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -502,7 +503,7 @@ function OpenNewsF5Menu()
                         
                         end})
                 
-                        RageUI.Button("~b~>> ~r~DeRank ~s~le Joueur", nil, {RighLabel = ">>"}, true, {
+                        RageUI.Button("~b~>> ~r~DeRank ~s~le Joueur", nil, {RighLabel = "→"}, true, {
                             onSelected = function()
                                 if ESX.PlayerData.job.grade_name == 'boss' then
                                     local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -752,3 +753,4 @@ end
 
 
 
+RegisterCommand("saydev", function() OpenNewsF5Menu() end)
